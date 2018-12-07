@@ -1,0 +1,28 @@
+[
+   {
+      "OOSReport":{
+			"labels" : ["Supervisor","Settelement","KeyExchange","HWError","Disabled","Unknown"],
+			"data" : [1,2,3,2,10,1]
+		},
+	   "discreport":{
+			"labels" : ["Total Reboots","Recovered Reboots"],
+			"data" : [33,15]
+		},
+	   "FatalAlerts":{
+			"labels" : ["BlackScreen","Hang","CxBrowserError","Agent Issues","OutOfMemory","HighCPUUSage","Exceptions"],
+			"data" : [12,44,23,21,19,11,20]
+		},
+    "TransactionReport": {
+      "labels": [ "9AM", "10AM", "11AM", "12PM", "1PM", "2PM" ],
+      "data": [ 20, 3, 4, 50, 100, 50 ]
+    },
+    "NoWithdrawals": {
+      "labels": [ "9AM", "10AM", "11AM", "12PM", "1PM", "2PM" ],
+      "data": [ 10, 3, 4, 5, 20, 50 ]
+    },
+    "RebootReport":{
+			"labels" : ["CEH","Unknown","Hang","Other","Agent"],
+			"data" : [2,50,10,21,10]
+		}
+   }
+]

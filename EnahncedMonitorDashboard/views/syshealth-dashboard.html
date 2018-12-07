@@ -1,0 +1,134 @@
+<br/>
+	
+<div class="row">
+
+    <stats number="{{CEHCount}}" comments="Critical Exceptions!" colour="primary" type="comments" ng-click="GetCEHDetails()"></stats>
+    <stats number="{{HANGCount}}" comments="HANGS!" colour="red" type="user" ng-click="GetHANGDetails()"></stats>
+    <stats number="{{ATM360Count}}" comments="No Tx's for 6 Hrs!" colour="yellow" type="shopping-cart" ng-click="GetATM360Details()"></stats>
+    <stats number="{{RecoveryCount}}" comments="Recovery Actions!" colour="green" type="support" ng-click="GetRecoveryDetails()"></stats>
+</div>
+
+<div>	
+<div class="ui menu">  
+	  <div class="item header">
+		System Health Report As of - {{::syshealthCtrl.timestamp | date: 'medium'}}
+	  </div>
+	<div class="right menu">
+		<div class="item field">
+			<div class="ui input">
+			  <button class="ui button" onClick="$('.ui.modal').modal('show')"><i class="icon file text outline"></i>Show Detail Report</button>
+			</div>
+		</div>
+	</div>	  
+	</div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="container">
+                    <h3 style="font-family:Calibri; color:green">Display Details by ATM ID</h3>
+                    <p ng-if="!displayWrongIdMessage" style="font-family:Calibri; color:orangered"> Please enter the ATM ID in NBCXXXX format </p>
+                    <p ng-if="displayWrongIdMessage" style="font-family:Calibri; color:orangered">Not Found!! - Enter valid terminal ID </p>
+                    
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="text">ATM Id:</label>
+                            <input type="text" class="form-control" id="email" placeholder="Enter ATM Id" ng-model="ATMID" name="ATMID">
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="remember" ng-checked="RememberATMID()"> Remember me</label>
+                        </div>
+                        <button type="submit" ng-click="GetDetailsByID()" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div>
+                <table ng-table="detailsbyidParams" class="table" show-filter="true">
+                    <tr ng-repeat="detail in $data">
+                        <td title="'AlertID'" filter="{ 'NAME - Alert Code': 'text'}" sortable="'NAME - Alert Code'">
+                            <b> {{detail['NAME - Alert Code']}}</b>
+                        </td>
+                        <td title="'Description'" filter="{ 'Status Description TH': 'text'}" sortable="'Status Description TH'">
+                            <b> {{detail['Status Description TH']}} </b>
+                        </td>
+                        <td title="'StartTime'" filter="{ 'Start Date TH': 'text'}" sortable="'Start Date TH'">
+                            <b> {{detail['Start Date TH']}} - {{detail['Start Time TH']}}</b>
+                        </td>
+                        <td title="'EndTime'" filter="{ 'End Date - Local TH': 'text'}" sortable="'End Date - Local TH'">
+                            <b> {{detail['End Date - Local TH']}} - {{detail['End Time - Local TH']}}</b>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!-- /.panel-heading -->
+           
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+
+    <div class="col-lg-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-bell fa-fw"></i> Notifications Panel
+            </div>
+            <!-- /.panel-heading -->
+            <!--<notifications></notifications>-->
+            <div class="panel-body">
+                <div class="list-group" ng-repeat="notification in notifications | limitTo : displayNotificationsCount">
+
+                    <a style="cursor:pointer" ng-click="GetNotificationDetails(notification.type)" class="list-group-item">
+                        <h4 class="list-group-item-heading"><b>{{notification.message}} </b></h4>
+                        <p class="list-group-item-text">last occurance {{notification.lastrecovered}}</p>
+                    </a>
+
+                </div>
+                <!-- /.list-group -->
+                <a ng-click="viewMore()" ng-disabled = "displayNotificationsCount > notifications.length" class="btn btn-default btn-block">View More Notifications</a>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+        <chat></chat>
+        <!-- /.panel .chat-panel -->
+    </div>
+</div>
+
+
+<div class="ui segment">
+
+	<h2 class="header">Process Wise Report</h2>
+	<canvas ng-hide="displayDetails" id="processWiseChart"></canvas>
+	
+	<div class="ui small modal">
+	  <i class="close icon"></i>
+	  <div class="header">
+		Detailed Process Report
+	  </div>
+	  <div class="content">
+        <table ng-table="tableParams" class="table" show-filter="true">
+            <tr ng-repeat="detail in $data">
+                <td title="'ATMId'" filter="{ 'ATM ID': 'text'}" sortable="'ATM ID'">
+                    <b> {{detail['ATM ID']}}</b>
+                </td>
+                <td ng-if="!displayDescription" title="'Details'" filter="{ 'Status Code Detail Text TH': 'text'}" sortable="'Status Code Detail Text TH'">
+                    <b> {{detail['Status Code Detail Text TH']}} </b>
+                </td>
+                <td ng-if="displayDescription" title="'Description'" filter="{ 'Status Description TH': 'text'}" sortable="'Status Description TH'">
+                    <b> {{detail['Status Description TH']}} </b>
+                </td>
+                <td title="'StartTime'" filter="{ 'Start Date TH': 'text'}" sortable="'Start Date TH'">
+                    <b> {{detail['Start Date TH']}} - {{detail['Start Time TH']}}</b>
+                </td>
+                <td title="'EndTime'" filter="{ 'End Date - Local TH': 'text'}" sortable="'End Date - Local TH'">
+                    <b> {{detail['End Date - Local TH']}} - {{detail['End Time - Local TH']}}</b>
+                </td>
+            </tr>
+        </table>
+	  </div>
+	</div>
+	
+	
+</div>

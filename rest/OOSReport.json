@@ -1,0 +1,8 @@
+﻿[
+  {
+    "OOSReport": {
+      "labels": [ "Supervisor", "Settelement", "KeyExchange", "HWError", "Disabled", "Unknown" ],
+      "data": [ 10, 2, 3, 2, 10, 1 ]
+    }
+  }
+]

@@ -1,0 +1,141 @@
+<br/>
+	
+<div class="ui menu">  
+	  <div class="item header">
+		Server : {{::main.server.NAME}}
+	  </div>
+	  <div class="item">
+		Server is up since last <b>{{::main.today | amDifference:main.server.START_DATE : 'days'}} days</b>
+	  </div>
+	  <div class="item">
+		Load Averages: 0.08 0.06 0.01
+	  </div>
+	  
+	  <div class="right menu">
+		<a class="active teal item">
+			Updates
+			<div class="ui teal label">14</div>
+		</a>
+	 </div>
+</div>
+
+<!--<div class="row">
+
+    <stats number="6" comments="New comments!" colour="primary" type="comments"></stats>
+    <stats number="12" comments="New tasks!" colour="primary" type="user"></stats>
+    <stats number="18" comments="New orders!" colour="yellow" type="shopping-cart"></stats>
+    <stats number="24" comments="Support tickets!" colour="red" type="support"></stats>
+</div>-->
+
+<div class="ui segment">
+	
+	<!--<div class="ui two stackable cards">
+	  <div class="card">
+		<div class="content">
+            <h2 class="header">OutOfService Report <span style="cursor:pointer" ng-click="OOSRefresh()" class="glyphicon glyphicon-refresh"></span></h2>
+
+                
+			<div class="ui divider"></div>
+			<table>
+				<tr>
+                    <td>
+                    <canvas id="pie" class="chart chart-pie chart-xs" chart-data="data"
+                            chart-colors="bgcolor1" chart-labels="labels" chart-options="options"></canvas>
+                    </td>
+				<td class="chartData1">
+                    <table class=\"ui very basic table\">
+                        <tr ng-repeat="label in OOSData.labels">
+                        <td style="cursor:pointer" ng-click="getOOSData()"><i style = "color : {{OOSData.datasets[0].backgroundColor[$index]}}" class="icon square"></i>{{label}}</td><td>{{OOSData.datasets[0].data[$index]}}</td></tr>
+                    </table>
+                </td>
+				</tr>
+			</table>
+		</div>			
+	  </div>-->	  
+    <div class="ui two stackable cards">
+        <div class="card">
+            <div class="content">
+                <h2 class="header">Critical Issues Radar <span style="cursor:pointer" ng-click="OOSRefresh()" class="glyphicon glyphicon-refresh"></span></h2>
+
+
+                <div class="ui divider"></div>
+                <canvas id="radar" class="chart chart-radar"
+                        chart-data="Exceptiondata" chart-options="options" chart-dataset-override="ExceptiondatasetOverride" chart-labels="Exceptionlabels"></canvas> 
+                <!--<table>
+                    <tr>
+                        <td>
+                           
+                        </td>
+                        <td class="chartData1">
+                            <table class=\"ui very basic table\">
+                                <tr ng-repeat="label in OOSData.labels">
+                                    <td style="cursor:pointer" ng-click="getOOSData()"><i style="color : {{OOSData.datasets[0].backgroundColor[$index]}}" class="icon square"></i>{{label}}</td>
+                                    <td>{{OOSData.datasets[0].data[$index]}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>-->
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <h2 class="header">Reboots Trend (Total Vs Recovery)</h2>
+                <div class="ui divider"></div>
+                <canvas id="tables" class="chart chart-line" chart-data="rebootmetricsData" chart-options="options"
+                        chart-labels="metricsLabels" chart-colors="rebootchartcolors" chart-dataset-override="RebootTrendDataSetOverride"></canvas>
+            </div>
+        </div>
+
+        <!--<div class="card">
+          <div class="content">
+              <h2 class="header">Fatal Alerts Recovered By EM</h2>
+              <div class="ui divider"></div>
+              <canvas id="bandwidthUsageChart"></canvas>
+          </div>
+        </div>-->
+        <div class="card">
+            <div class="content">
+                <h2 class="header">Transactions Trend (WDL vs DEP)</h2>
+                <div class="ui divider"></div>
+                <!-- <canvas id="tables" class="chart chart-line" chart-data="transactionmetrics" chart-options="options"
+                        chart-labels="metricsLabels" chart-colors="rebootchartcolors"></canvas> -->
+                <canvas class="chart chart-bar" chart-data="transactionmetrics" chart-labels="metricsLabels"
+                        chart-colors="TransactionTrendcolors" chart-dataset-override="TransactiondatasetOverride"></canvas>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <h2 class="header">No Transaction Report</h2>
+                <div class="ui divider"></div>
+                <canvas id="tables" class="chart chart-line" chart-data="notransactionmetricsData" chart-options="options"
+                        chart-labels="notransactionmetricsLabels" chart-colors="rebootchartcolors"></canvas>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <h2 class="header">ATM 360 Report</h2>
+                <div class="ui divider"></div>
+                <canvas id="bar" class="chart chart-bar" chart-data="atm360metricsData" chart-labels="atm360metricsLabels"
+                        chart-series="series" chart-options="options"></canvas>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <h2 class="header">Reboot Reasons</h2>
+                <div class="ui divider"></div>
+                <div id="chart" dx-chart="chartOptions"></div>
+            </div>
+        </div>
+        <!--<div class="col-lg-6 col-sm-12" id="line-chart">
+            <div class="panel panel-default">
+                <div class="panel-heading">Line Chart</div>
+                <div class="panel-body">
+                    <div id="chart" dx-chart="chartOptions"></div>
+                </div>
+            </div>
+        </div>-->
+    </div>
+	
+	
+</div>
